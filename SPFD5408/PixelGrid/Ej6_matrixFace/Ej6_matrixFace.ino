@@ -24,6 +24,7 @@ Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 //Variables globales de TFT y de malla
 uint16_t BCKG = YELLOW;
 int width, height;
+bool gridDebug = false;
 
   //Numero de filas, columnas, anchura y altura de subpixel
 int w, h, col, row;
@@ -49,14 +50,15 @@ void setup() {
   // Dividimos la anchura y la altura para determinar cuanto medira cada cuadrado
   w = width/col;
   h = height/row;
+
+  if (gridDebug){
+    for(int i = 0; i < col; ++i){
+        for(int j=0; j< row; j++){
   
-  for(int i = 0; i < col; ++i){
-      for(int j=0; j< row; j++){
-
-          tft.drawRect(i*w, j*h, w, h, BLACK);
-      }
+           tft.drawRect(i*w, j*h, w, h, BLACK);
+        }
+    }
   }
-
   //En lugar de utilizar un pixel de forma individual vamos a crear una matriz de valores que contengan la informacion como si de una imagen real se tratara
   //Dentro de cada elemento de la matriz vamos a guardar la informacion del color que queremos dibujar
 
