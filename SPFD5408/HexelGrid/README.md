@@ -19,32 +19,32 @@ Arduino Board read image information from SD card with a <a href="/src/examples/
 
 
 <p align="center">
-  <img  src="src/Hexel1.png" width="200"/>
-  <img  src="/src/Hexel2.png" width="200"/>
-  <img  src="/src/Hexel3.png" width="200"/>
-  <img  src="/src/Hexel4.png" width="200"/>
+  <img  src="/src/HexelGrid/Hexel1.png" width="200"/>
+  <img  src="/src/HexelGrid/Hexel2.png" width="200"/>
+  <img  src="/src/HexelGrid/Hexel3.png" width="200"/>
+  <img  src="/src/HexelGrid/Hexel4.png" width="200"/>
 </p>
 
 Hexel grid class is based on geometric triangles ordered in columns and rows with the following structure: 
 
 <p align="center">
-  <img  src="/src/HexelGridPoints.jpg" width="250"/>
-  <img  src="/src/Hexel4Grid.jpg" width="250"/>
-  <img  src="/src/Hexel4Grid_Xtended.jpg" width="250"/>
+  <img  src="/src/HexelGrid/HexelGridPoints.jpg" width="250"/>
+  <img  src="/src/HexelGrid/Hexel4Grid.jpg" width="250"/>
+  <img  src="/src/HexelGrid/Hexel4Grid_Xtended.jpg" width="250"/>
 </p>
 
 <p align="center">
-  <img  src="/src/Hexel4Grid_module.jpg" width="250"/>
-  <img  src="/src/Hexel4Grid_Sectors.jpg" width="250"/>
-  <img  src="/src/Hexel4Grid_triangles.jpg" width="250"/>
+  <img  src="/src/HexelGrid/Hexel4Grid_module.jpg" width="250"/>
+  <img  src="/src/HexelGrid/Hexel4Grid_Sectors.jpg" width="250"/>
+  <img  src="/src/HexelGrid/Hexel4Grid_triangles.jpg" width="250"/>
 </p>
 
 ![Temple Aqualung](img/Temple_Aqualung.png)
 
 <p align="center">
-  <img  src="/src/Earth.png" width="250"/>
-  <img  src="/src/DinoHexel.png" width="250"/>
-  <img  src="/src/LagoonCastle.png" width="250"/>
+  <img  src="/src/HexelGrid/Earth.png" width="250"/>
+  <img  src="/src/HexelGrid/DinoHexel.png" width="250"/>
+  <img  src="/src/HexelGrid/LagoonCastle.png" width="250"/>
 </p>
 
 This library has been tested with large variety TFT Screens. 
