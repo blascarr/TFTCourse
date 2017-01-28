@@ -11,3 +11,5 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
   <li> <a href="https://github.com/itead/ITEADLIB_Arduino_Nextion/">Nextion</a></li>
 </ul>
 <br>
+
+![Creatice Commons Licence](src/icon_cc.png)

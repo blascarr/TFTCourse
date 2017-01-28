@@ -2,7 +2,7 @@
 
 <h2> P10 MatrixFaces</h2>
 
-Ahora es el momento de crear tus propias matrices y definir los espacios con un color para dibujar caras 
+Ahora es el momento de crear tus propias matrices y definir los espacios con un color para dibujar caras.
 <ul>
   <li> Happy</li>
   <li> Maybe</li>
@@ -19,7 +19,6 @@ Ahora es el momento de crear tus propias matrices y definir los espacios con un 
 </p>
 <br>
 
-<h2> Advanced Gates</h2>
 <ul>
   <li> Yeaah</li>
   <li> Look_Down</li>
@@ -63,4 +62,19 @@ Ahora es el momento de crear tus propias matrices y definir los espacios con un 
     <a href="/src/PixelGrid/Sad.png"><img  src="/src/PixelGrid/Sad.png" width="200"/></a>
     <a href="/src/PixelGrid/Very_Very_Angry.png"><img  src="/src/PixelGrid/Very_Very_Angry.png" width="200"/></a>
 </p>
+
+<ul>
+  <li> Boot</li>
+  <li> Glasses</li>
+  <li> Kidding</li>
+  <li> StrangeTongue</li>
+</ul>
+
+<p align="center">
+    <a href="/src/PixelGrid/Boot.png"><img  src="/src/PixelGrid/Boot.png" width="200"/></a>
+    <a href="/src/PixelGrid/Glasses.png"><img  src="/src/PixelGrid/Glasses.png" width="200"/></a>
+    <a href="/src/PixelGrid/Kidding.png"><img  src="/src/PixelGrid/Kidding.png" width="200"/></a>
+    <a href="/src/PixelGrid/StrangeTongue.png"><img  src="/src/PixelGrid/StrangeTongue.png" width="200"/></a>
+</p>
+
 <br>
