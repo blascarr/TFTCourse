@@ -28,45 +28,28 @@ void setup() {
   tft.begin(0x9341); // SDFP5408
 
   tft.setRotation(0); 
-  tft.fillScreen(GREEN);
+  tft.fillScreen(WHITE);
 
   width = tft.width();
   height = tft.height();
 
-  //Un rectangulo requiere de 5 parametros. Posicion --> Esquina superior izquierda
+  //Una linea recta requiere de 4 parametros. Posicion inicial, longitud y color
   // Posicion en X --> Direccion horizontal (De izquierda a derecha)
   // Posicion en Y --> Direccion vertical (De arriba a abajo)
-  // Anchura --> Distancia en pixeles
-  // Altura --> Distancia en pixeles
+  // Longitud --> Distancia en pixeles
   // Color --> En hexadecimal
 
-  //Dibujar una cara con dos cuadrados y un rectangulo debajo
+  // Hay que crear una cruz con dos lineas horizontal y vertical que pase por el centro con una longitud de 100 pixeles
   
-    //Dibujar dos cuadrados en linea en el centro de la pantalla de 50 pixeles de lado con una separacion de 30 pixeles
-  
-    // Dimensiones del rectangulo
-    int l = 60;
-    int space = 50;
-    
-    // Posicion del primer cuadrado
-    int x1 = width/2 - l - space/2;
-    int y1 = height/2 - l /2;
-  
-    uint16_t color1 = RED;
-    
-    tft.fillRect(x1, y1, l, l, color1);
-  
-    // Posicion del segundo cuadrado
-    int x2 = width/2 +space/2;
-    int y2 = height/2 - l /2;
-  
-    uint16_t color2 = RED;
-    
-    tft.fillRect(x2, y2, l, l, color2);
+  int length = 100;
+  int x = width/2 - length/2;
+  int y = height/2 - length/2;
 
-   // Dibujar rectangulo debajo de 150 pixeles de largo y 30 de ancho a una distancia de 40 pixeles de los ojos
-
-   tft.fillRect(width/2-150/2, y1+l+40, 150, 30, color2);
+  // Dibujamos la linea horizontal 
+  tft.drawFastHLine(x, height/2 , length, BLACK);
+  // Dibujamos la linea vertical
+  tft.drawFastVLine(width/2, y , length, BLACK);
+  
 }
 
 void loop() {

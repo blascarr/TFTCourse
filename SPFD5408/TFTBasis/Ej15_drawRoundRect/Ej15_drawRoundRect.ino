@@ -28,40 +28,39 @@ void setup() {
   tft.begin(0x9341); // SDFP5408
 
   tft.setRotation(0); 
-  tft.fillScreen(GREEN);
+  tft.fillScreen(WHITE);
 
+  tft.setTextSize(2);
+  tft.setTextColor(BLACK);
+  
   width = tft.width();
   height = tft.height();
 
-  //Un rectangulo requiere de 5 parametros. Posicion --> Esquina superior izquierda
+  // Un rectangulo con aristas redondeadas sirve para crear el modo boton. Requiere de 7 parametros. Posicion inicial, anchura, altura, radio y color
   // Posicion en X --> Direccion horizontal (De izquierda a derecha)
   // Posicion en Y --> Direccion vertical (De arriba a abajo)
   // Anchura --> Distancia en pixeles
   // Altura --> Distancia en pixeles
   // Color --> En hexadecimal
 
-  //Dibujar dos cuadrados en linea en el centro de la pantalla de 50 pixeles de lado con una separacion de 30 pixeles
-
-  // Dimensiones del rectangulo
-  int l = 60;
-  int space = 50;
+  // Hay que dibujar un boton con un texto en su interior. Para ello haremos un rectangulo redondeado de 100 pixeles de anchura y 40 de altura y un radio de 8 situado en el centro de la pantalla
+  // El boton tendra un borde de un color diferente a su relleno
+  int w = 100;
+  int h =40;
+  int radius = 8;
   
-  // Posicion del primer cuadrado
-  int x1 = width/2 - l - space/2;
-  int y1 = height/2 - l /2;
-
-  uint16_t color1 = RED;
+  int x = width/2 - w/2;
+  int y = height/2 - h/2;
   
-  tft.fillRect(x1, y1, l, l, color1);
-
-  // Posicion del segundo cuadrado
-  int x2 = width/2 +space/2;
-  int y2 = height/2 - l /2;
-
-  uint16_t color2 = RED;
+  //Crear boton
   
-  tft.fillRect(x2, y2, l, l, color2);
+  tft.fillRoundRect(x,y,w,h,radius,GREEN);
+  tft.drawRoundRect(x,y,w,h,radius,BLUE);
+
+  tft.setCursor(x,y);
+  tft.println("Boton");
 }
+
 
 void loop() {
 
