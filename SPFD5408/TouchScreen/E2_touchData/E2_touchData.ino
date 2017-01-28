@@ -10,7 +10,7 @@
 //Estos son los pines que definen el modo de conexion de las resistencias de la pantalla tactil
 #define YP A1  // must be an analog pin, use "An" notation!
 #define XM A2  // must be an analog pin, use "An" notation!
-#define YM 7   // can be a digital pin
+#define YM 7  // can be a digital pin
 #define XP 6   // can be a digital pin
 
 //Hay que calibrar primero este parametro para hacer que funcione este ejemplo. 
@@ -57,7 +57,7 @@ void setup(void) {
   tft.reset();
   tft.begin(0x9341);
   tft.setRotation(0); 
-
+  
   width = tft.width() - 1;
   height = tft.height() - 1;
 
@@ -82,6 +82,7 @@ void loop(void) {
      Serial.print("X = "); Serial.print(p.x);
      Serial.print("\tY = "); Serial.print(p.z);
      Serial.print("\tPressure = "); Serial.println(p.y);
+     
   }// a point object holds x y and z coordinates
 
 }
