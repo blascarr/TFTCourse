@@ -3,7 +3,7 @@
 Se va a crear una malla en la que se definiran por columnas una malla triangular con una relacion entre las dimensiones de cada triangulo para crear un efecto tridimensional, denominado <a href="https://es.wikipedia.org/wiki/Proyecci%C3%B3n_isom%C3%A9trica">proyección isometrica.</a>
 
 
-<img  src="/src/HexelGrid/Hexel4Grid_Xtended.jpg" />
+<img  src="/src/HexelGrid/HexelGrid_trianglesP.png" />
 
 <p align="center">
 	<img  src="/src/HexelGrid/Bayer_pattern.png" width="300"/>
