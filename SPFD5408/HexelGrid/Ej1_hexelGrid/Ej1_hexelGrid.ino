@@ -24,31 +24,7 @@ Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 //Variables globales de TFT y de malla
 int width, height;
   //Numero de filas, columnas, anchura y altura de subpixel
-int w, h, col, row;
-
-//Creamos una clase apropiada para acumular datos de pixel en la malla con 3 parametros x, y y el color
-class Pixel {
- public:
-  Pixel(void){
-    x = y = 0;
-  };
-  
-  Pixel(int16_t x0, int16_t y0){
-    x = x0;
-    y = y0;
-    color = BLACK;
-  };
-  
-  Pixel(int16_t x0, int16_t y0, uint16_t color0){
-    x = x0;
-    y = y0;
-    color = color0;
-  };
-
-  int16_t x, y;
-  uint16_t color;
-};
-
+int col, row;
 
 void setup() {
   Serial.begin(9600);
@@ -60,67 +36,53 @@ void setup() {
   width = tft.width();
   height = tft.height();
 
-  //Ahora vamos a rellenar las filas y columnas mediante el uso de un vector en el que guardaremos en cada espacio del vector, cada una de las coordenadas a dibujar 
+  //La malla será en este momento triangular con unas dimensiones definidas 
+  // y una disposición que nos permita acceder a cada uno de estos triangulos mediante la definicion de la fila y la columna que queremos dibujar.
 
+  //Para ello, vamos a crear esta malla en función de las columnas que tenemos, ya que existe una relacion de dimension definida con las aristas de cada triangulo
+  
   //Dibujo de malla
-  // 12 columnas y 20 filas
-  col = 12;
-  row = 20;
-
-  // Dividimos la anchura y la altura para determinar cuanto medira cada cuadrado
-  w = width/col;
-  h = height/row;
+  col = 17;
+  row = 41;
   
-  for(int i = 0; i < col; ++i){
-      for(int j=0; j< row; j++){
-
-          tft.drawRect(i*w, j*h, w, h, BLACK);
-      }
-  }
-
-  //En lugar de utilizar un pixel de forma individual vamos a crear una matriz de valores que contengan la informacion como si de una imagen real se tratara
-  //Dentro de cada elemento de la matriz vamos a guardar la informacion del color que queremos dibujar
-
-  //Para crear una matriz es necesario conocer a priori cuantos elementos en filas y en columnas se van a contener
-  // En este caso vamos a crear una matriz de 3 filas y 3 columnas y las rellenaremos con colores
-  uint16_t pixelMatrix [3][4]={
-    {RED, GREEN, BLUE,CYAN}, 
-    {GREEN, BLUE, CYAN, RED}, 
-    {BLUE, CYAN, RED, GREEN},
-  };
-
-  // sizeof Multidimensional Array Analysis
-  
-  Serial.print("Size of Matrix: ");
-  Serial.println(sizeof(pixelMatrix));
-  
-  Serial.print("Size of array [0]: ");
-  Serial.println(sizeof(pixelMatrix[0]));
-
-  Serial.print("Size of each Matrix element [0][0]: ");
-  Serial.println(sizeof(pixelMatrix[0][0]));
-  Serial.println();
-
-  //------------------//
-  
-  Serial.print("Matrix Rows: ");
-  int matrixRow = sizeof(pixelMatrix)/sizeof(pixelMatrix[0]);
-  Serial.println(matrixRow);
-  
-  Serial.print("Matrix Columns: ");
-  int matrixColumn = sizeof(pixelMatrix[0])/sizeof(pixelMatrix[0][0]);
-  Serial.println(matrixColumn);
-  
-  //Con un control en bucle podemos hacer que se dibujen todos los elemenentos de la matriz
-  for (int i = 0; i < matrixRow ; ++i){
-    for (int j = 0; j < matrixColumn; ++j){
-      //Orden de los contadores i y j corresponden con el desplazamiento en alto y ancho respectivamente
-      tft.fillRect(j*w, i*h, w, h, pixelMatrix[i][j]);
-    }  
-  }
+  hexelgrid(col, row, BLACK);
 }
 
 void loop() {
 
 }
+
+void hexelgrid(int8_t col, int8_t row, uint16_t color){
+    float w = width/col;
+    float h = w*sqrt(4/3);
+    int n_rows = height/h;
+    
+    for (int i = 0; i <= col+1; ++i)
+    {
+        //hexel::drawTriangle(   w*(i-1), 0, w*i, 0 , w*(i-1), h/2, color);
+      for (int j = 0; j <= n_rows+1; ++j)
+      {
+        //hexel::drawTriangle(   0, h/2+h*(j-1), w, h*j , 0, h/2+h*j, color);
+        //hexel::drawTriangle(   w, h+h*(j-1), 2*w, h*j+h/2 , w, h+h*j, color);
+        //hexel::drawTriangle(   2*w, h/2+h*(j-1), 3*w, h*j , 2*w, h/2+h*j, color);
+        //------
+        //hexel::drawTriangle(   w*(i-1), h/2+h*(j-1), w*i, h*j , w*(i-1), h/2+h*j, color);
+
+        tft.drawTriangle(   w*(i-1), h/2*(i%2+1)+h*(j-1), w*i, h/2*(i%2)+h*j , w*(i-1), h/2*(i%2+1)+h*j, color);
+        tft.drawTriangle(   w*(i-1), h/2*(i%2+1)+h*(j-1), w*i, h/2*(i%2)+h*j , w*(i-1), h/2*(i%2+1)+h*j, color);
+
+        
+        if(j== 0){
+          Serial.print("Distancia de la fila");
+          Serial.println(w*(i-1));
+          Serial.println("--------");
+        }
+
+      }
+    }
+    //Border Correction
+    tft.drawFastHLine(-2, -1, width,  color);
+      tft.drawFastVLine(-2, -1, height,  color);
+      tft.drawFastVLine(-1, -1, height,  color);
+  }
 
