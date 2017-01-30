@@ -41,48 +41,40 @@ void setup() {
 
   //Para ello, vamos a crear esta malla en función de las columnas que tenemos, ya que existe una relacion de dimension definida con las aristas de cada triangulo
   
-  //Dibujo de malla
-  col = 17;
-  row = 41;
+  //Numero de columnas *Solo necesitamos conocer las columnas, ya que las filas las calcularemos mediante una formula trigonometricae base a este numero.
+  col = 13;
   
-  hexelgrid(col, row, BLACK);
+  trianglegrid(col, row, BLACK);
 }
 
 void loop() {
 
 }
 
-void hexelgrid(int8_t col, int8_t row, uint16_t color){
+void trianglegrid(int8_t col, int8_t row, uint16_t color){
+
+    //Calculamos cuantos pixeles hay que dibujar de ancho para cada triangulo. 
     float w = width/col;
-    float h = w*sqrt(4/3);
-    int n_rows = height/h;
     
-    for (int i = 0; i <= col+1; ++i)
-    {
-        //hexel::drawTriangle(   w*(i-1), 0, w*i, 0 , w*(i-1), h/2, color);
-      for (int j = 0; j <= n_rows+1; ++j)
+    //Conociendo el ancho de columna, establecemos la altura de cada triangulo con la siguiente formula. 
+    float h = w*sqrt(4/3);
+    
+    //Sabiendo la altura total de la pantalla de cada triangulo, podemos calcular el numero de filas que vamos a dibujar dentro del bucle
+    int n_rows = height/h;
+
+    //Comenzamos dibujando las columnas
+    for (int i = 0; i <= col; ++i){
+
+      for (int j = 0; j <= n_rows; ++j)
       {
-        //hexel::drawTriangle(   0, h/2+h*(j-1), w, h*j , 0, h/2+h*j, color);
-        //hexel::drawTriangle(   w, h+h*(j-1), 2*w, h*j+h/2 , w, h+h*j, color);
-        //hexel::drawTriangle(   2*w, h/2+h*(j-1), 3*w, h*j , 2*w, h/2+h*j, color);
-        //------
-        //hexel::drawTriangle(   w*(i-1), h/2+h*(j-1), w*i, h*j , w*(i-1), h/2+h*j, color);
-
-        tft.drawTriangle(   w*(i-1), h/2*(i%2+1)+h*(j-1), w*i, h/2*(i%2)+h*j , w*(i-1), h/2*(i%2+1)+h*j, color);
-        tft.drawTriangle(   w*(i-1), h/2*(i%2+1)+h*(j-1), w*i, h/2*(i%2)+h*j , w*(i-1), h/2*(i%2+1)+h*j, color);
-
-        
-        if(j== 0){
-          Serial.print("Distancia de la fila");
-          Serial.println(w*(i-1));
-          Serial.println("--------");
-        }
-
+        tft.drawTriangle(   w*(i-1), h*(j-1), w*i, h/2*j , w*(i-1), h*j, color);
       }
     }
     //Border Correction
+    /*
     tft.drawFastHLine(-2, -1, width,  color);
-      tft.drawFastVLine(-2, -1, height,  color);
-      tft.drawFastVLine(-1, -1, height,  color);
+    tft.drawFastVLine(-2, -1, height,  color);
+    tft.drawFastVLine(-1, -1, height,  color);
+    */
   }
 
