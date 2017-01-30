@@ -17,8 +17,7 @@ Lo que queremos conseguir es que los objetos tengan un efecto tridimensional med
 
 En este ejercicio hemos de definir las coordenadas de 3 puntos del triángulo.
 <p align="center">
-	<img  src="/src/HexelGrid/HexelGridPoints.png" width="300"/>
-	<img  src="/src/HexelGrid/HexelGridPoints.png" width="300"/>
+	<img  src="/src/HexelGrid/HexelGrid_trianglesCoords.png" />
 </p>
 
 Ahora tendremos el problema de desplazar hacia abajo las columans pares, mientras que las impares deben de permanecer inmoviles.

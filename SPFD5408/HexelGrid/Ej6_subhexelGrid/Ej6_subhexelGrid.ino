@@ -30,38 +30,74 @@ void setup() {
   Serial.begin(9600);
   tft.begin(0x9341); // SDFP5408
 
-  tft.setRotation(1); 
+  tft.setRotation(0); 
   tft.fillScreen(YELLOW);
 
   width = tft.width();
   height = tft.height();
 
-  //Ahora subdiviremos los triangulos en otros subtriangulos con las coordenadas definidas para crear una subdivision denominada subhexel
-  //Pero ahora podremos definir si queremos dibujarlo de forma invertida o no.
+  //Con la funcion subHexel por sectores vamos a crear toda una malla completa 
   
-  //Cambiar el primer parametro por el valor 0 para que se cree la malla simetrica
-  subhexel( 1, BLACK);
+  col = 7;
+  
+  subhexelgrid(col, BLACK);
+  
 }
 
 void loop() {
 
 }
 
-void subhexel(bool sym, uint16_t color){
+void subhexelgrid(int8_t col, uint16_t color){
 
-    float w = width;
-    float h = height;
+    //Calculamos cuantos pixeles hay que dibujar de ancho para cada triangulo. 
+    float w = width/col;
 
-    float PX[] = {0,w/3, w/2, 2*w/3, w};
-    float PY[]= {0,h/2, h};
+    //Conociendo el ancho de columna, establecemos la altura de cada triangulo con la siguiente formula. 
+    float h = w*sqrt(4/3);
+    
+    //Sabiendo la altura total de la pantalla de cada triangulo, podemos calcular el numero de filas que vamos a dibujar dentro del bucle
+    int n_rows = height/h;
+
+    int posx = 0;
+    int posy = 0;
+    Serial.println(col);
+    Serial.println(n_rows);
+
+    for (int i = 0; i < col; i++){
+      for (int j = 0; j < n_rows; j++){
+
+        //Control para pintar cada recuadro en su posicion y no dibujar en exceso
+        if(!(i%2)) subhexel(w*i, h*j, w, h/2, 1, BLACK);
+        if (i%2) subhexel(w*i, h*j, w, h/2, 0, BLACK);
+        if (!(i%2)) subhexel(w*i, h*(j+1/2)+h/2, w, h/2, 0, BLACK);
+        if (i%2) subhexel(w*i, h*(j+1/2)+h/2, w, h/2, 1, BLACK);
+        
+        /*Serial.print("i: ");
+        Serial.print(i);
+        Serial.print(" j: ");
+        Serial.print(j);
+        Serial.print(" Module i: ");
+        Serial.print(i%2);
+        Serial.print(" Module j: ");
+        Serial.println(j%2);*/
+        
+      }
+    }
+}
+
+void subhexel(float pos_x, float pos_y, int w , int h, bool sym, uint16_t color){
+
+    float PX[] = {0 + pos_x ,w/3 + pos_x, w/2 + pos_x, 2*w/3 + pos_x, w + pos_x};
+    float PY[]= {0 + pos_y, h/2+ pos_y, h+ pos_y};
     
     if (!sym){
 
-      PY[0] = h;
-      PY[1] = h/2;
-      PY[2] = 0;
+      PY[0] = h + pos_y;
+      PY[1] = h/2 + pos_y;
+      PY[2] = 0 + pos_y;
     }
-    
+
     //Vamos a crear 6 subtriangulos dentro de el area determinada 
     
     tft.drawTriangle(   PX[0], PY[0], PX[1], PY[2] , PX[0], PY[2], color);

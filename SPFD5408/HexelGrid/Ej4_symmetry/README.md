@@ -5,7 +5,7 @@ En este ejercicio vamos a dar una solución a un problema de simetría.
 Es posible que en función de la configuración que se nos proponga para crear la malla, deberemos de pensar cuándo se utilizan la submalla con una configuración invertida dispuesta en filas y en columnas de forma repetida.
 
 <p align="center">
-	<img  src="/src/HexelGrid/HexelGridPointsPP.png" width="300"/>
+	<img  src="/src/HexelGrid/HexelGridPointsPP.png" />
 </p>
 
 Para ello, vamos a valorar cuáles son las coordenadas de cada uno de los triángulos y cómo podemos hacer que éstos se modifiquen con el menor número de cambios.
@@ -13,7 +13,7 @@ Para ello, vamos a valorar cuáles son las coordenadas de cada uno de los trián
 En el ejercicio anterior vimos que las coordenadas de los puntos erán los siquientes.
 
 <p align="center">
-	<img  src="/src/HexelGrid/HexelGridPoints.png" width="300"/>
+	<img  src="/src/HexelGrid/HexelGridPoints.png" />
 </p>
     tft.drawTriangle(   0, 0, w/3, h , 0, h, color);
     tft.drawTriangle(   0, 0, w/2, h/2 , w/3, h, color);
@@ -26,7 +26,7 @@ En el ejercicio anterior vimos que las coordenadas de los puntos erán los siqui
 
 Si creamos el 
 <p align="center">
-	<img  src="/src/HexelGrid/HexelGridPoints_Inv.png" width="300"/>
+	<img  src="/src/HexelGrid/HexelGridPoints_Inv.png" />
 </p>
 
     

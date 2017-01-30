@@ -37,31 +37,37 @@ void setup() {
   height = tft.height();
 
   //Ahora subdiviremos los triangulos en otros subtriangulos con las coordenadas definidas para crear una subdivision denominada subhexel
-  //Pero ahora podremos definir si queremos dibujarlo de forma invertida o no.
+  //Pero ahora que podemos definir si queremos dibujarlo de forma invertida vamos a desarrollar nuestra funcion para definir los sutriangulos en un conjunto de 4 zonas.
+
+  //Estas zonas se denominan cuadrantes y tenemos que operar entre ellos para desarrollar una malla completa.
+  //Al igual que la funcion drawRect, vamos a desarrollar 4 parametros adicionales para determinar la posicion de inicio en X y en Y, la anchura, la altura y una condicion de inversion para que se cree la malla
   
-  //Cambiar el primer parametro por el valor 0 para que se cree la malla simetrica
-  subhexel( 1, BLACK);
+  int posx = 0;
+  int posy=0;
+  
+  subhexel(posx, posy, width/2, height/2, 1, BLACK);
+  subhexel(posx+width/2, posy, width/2, height/2, 0, BLACK);
+  subhexel(posx, posy+height/2, width/2, height/2, 0, BLACK);
+  subhexel(posx+width/2, posy+height/2, width/2, height/2, 1, BLACK);
+  
 }
 
 void loop() {
 
 }
 
-void subhexel(bool sym, uint16_t color){
+void subhexel(float pos_x, float pos_y, int w , int h, bool sym, uint16_t color){
 
-    float w = width;
-    float h = height;
-
-    float PX[] = {0,w/3, w/2, 2*w/3, w};
-    float PY[]= {0,h/2, h};
+    float PX[] = {0 + pos_x ,w/3 + pos_x, w/2 + pos_x, 2*w/3 + pos_x, w + pos_x};
+    float PY[]= {0 + pos_y, h/2+ pos_y, h+ pos_y};
     
     if (!sym){
 
-      PY[0] = h;
-      PY[1] = h/2;
-      PY[2] = 0;
+      PY[0] = h + pos_y;
+      PY[1] = h/2 + pos_y;
+      PY[2] = 0 + pos_y;
     }
-    
+
     //Vamos a crear 6 subtriangulos dentro de el area determinada 
     
     tft.drawTriangle(   PX[0], PY[0], PX[1], PY[2] , PX[0], PY[2], color);
