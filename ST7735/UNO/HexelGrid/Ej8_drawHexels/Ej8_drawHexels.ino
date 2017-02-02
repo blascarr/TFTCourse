@@ -1,25 +1,29 @@
-#include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
-#include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
+#include <SPI.h>  
+#include <Adafruit_GFX.h>    // Core graphics library
+#include <Adafruit_ST7735.h> // Hardware-specific library
 
-//Arduino UNO Pin Definition 
-#define LCD_CS A3 // Chip Select goes to Analog 3
-#define LCD_CD A2 // Command/Data goes to Analog 2
-#define LCD_WR A1 // LCD Write goes to Analog 1
-#define LCD_RD A0 // LCD Read goes to Analog 0
-#define LCD_RESET A4 // Can alternately just connect to Arduino's reset pin
-
+// These definitions map display functions to the Adduino UNO display header pins
+#define sclk 15
+#define mosi 16
+#define cs   7
+#define dc   6
+#define rst  5
+    
 // Assign human-readable names to some common 16-bit color values:
-#define  BLACK   0x0000
-#define BLUE    0x001F
-#define RED     0xF800
-#define GREEN   0x07E0
-#define CYAN    0x07FF
-#define MAGENTA 0xF81F
-#define YELLOW  0xFFE0
-#define WHITE   0xFFFF
+  #define BLACK 0x0000
+  #define WHITE 0xFFFF
+  #define BLUE 0x001F
+  #define GREEN   0x07E0
+  #define YELLOW 0xFFE0 
+  #define RED     0xF800
+  #define BROWN 0x99AA66
+  #define CYAN    0x07FF
+  #define MAGENTA 0xF81F
+
 
 //Declaracion objeto TFT
-Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
+Adafruit_ST7735 tft = Adafruit_ST7735(cs, dc, rst);
+
 
 //Variables globales de TFT y de malla
 int width, height;
@@ -28,7 +32,7 @@ int columns;
 
 void setup() {
   Serial.begin(9600);
-  tft.begin(0x9341); // SDFP5408
+  tft.initR(INITR_BLACKTAB); // Tab Label for ST7735 TFT Screen (INITR_GREENTAB 0x0, INITR_REDTAB 0x1, INITR_BLACKTAB 0x2)
 
   tft.setRotation(1); 
   tft.fillScreen(WHITE);
@@ -38,16 +42,16 @@ void setup() {
 
   columns = 4;
   
-  drawSubHexel(0,0,GREEN);
+  drawSubHexel(0,0,ROSE);
   drawSubHexel(1,1,YELLOW);
-  drawSubHexel(1,0,GREEN);
+  drawSubHexel(1,0,ROSE);
   drawSubHexel(0,1,YELLOW);
   drawSubHexel(0,2,BLUE);
   drawSubHexel(1,2,BLUE);
 
-  drawSubHexel(3,2,GREEN);
+  drawSubHexel(3,2,ROSE);
   drawSubHexel(4,3,YELLOW);
-  drawSubHexel(3,3,GREEN);
+  drawSubHexel(3,3,ROSE);
   drawSubHexel(5,2,BLUE);
   drawSubHexel(4,2,YELLOW);
   drawSubHexel(5,3,BLUE);

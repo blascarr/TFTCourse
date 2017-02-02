@@ -1,34 +1,37 @@
-#include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
-#include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
+#include <SPI.h>  
+#include <Adafruit_GFX.h>    // Core graphics library
+#include <Adafruit_ST7735.h> // Hardware-specific library
 
-//Arduino UNO Pin Definition 
-#define LCD_CS A3 // Chip Select goes to Analog 3
-#define LCD_CD A2 // Command/Data goes to Analog 2
-#define LCD_WR A1 // LCD Write goes to Analog 1
-#define LCD_RD A0 // LCD Read goes to Analog 0
-#define LCD_RESET A4 // Can alternately just connect to Arduino's reset pin
-
+// These definitions map display functions to the Adduino UNO display header pins
+#define sclk 15
+#define mosi 16
+#define cs   7
+#define dc   6
+#define rst  5
+    
 // Assign human-readable names to some common 16-bit color values:
-#define  BLACK   0x0000
-#define BLUE    0x001F
-#define RED     0xF800
-#define GREEN   0x07E0
-#define CYAN    0x07FF
-#define MAGENTA 0xF81F
-#define YELLOW  0xFFE0
-#define WHITE   0xFFFF
+  #define BLACK 0x0000
+  #define WHITE 0xFFFF
+  #define BLUE 0x001F
+  #define GREEN   0x07E0
+  #define YELLOW 0xFFE0 
+  #define RED     0xF800
+  #define BROWN 0x99AA66
+  #define CYAN    0x07FF
+  #define MAGENTA 0xF81F
+
 
 //Declaracion objeto TFT
-Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
+Adafruit_ST7735 tft = Adafruit_ST7735(cs, dc, rst);
 
 //Variables globales de TFT y de malla
 int width, height;
   //Numero de filas, columnas, anchura y altura de subpixel
-int columns;
+int col, row;
 
 void setup() {
   Serial.begin(9600);
-  tft.begin(0x9341); // SDFP5408
+  tft.initR(INITR_BLACKTAB); // Tab Label for ST7735 TFT Screen (INITR_GREENTAB 0x0, INITR_REDTAB 0x1, INITR_BLACKTAB 0x2)
 
   tft.setRotation(1); 
   tft.fillScreen(WHITE);
@@ -36,23 +39,15 @@ void setup() {
   width = tft.width();
   height = tft.height();
 
-  columns = 4;
-  
-  drawSubHexel(0,0,GREEN);
+
+  drawSubHexel(0,0,ROSE);
   drawSubHexel(1,1,YELLOW);
-  drawSubHexel(1,0,GREEN);
+  drawSubHexel(1,0,ROSE);
   drawSubHexel(0,1,YELLOW);
   drawSubHexel(0,2,BLUE);
   drawSubHexel(1,2,BLUE);
 
-  drawSubHexel(3,2,GREEN);
-  drawSubHexel(4,3,YELLOW);
-  drawSubHexel(3,3,GREEN);
-  drawSubHexel(5,2,BLUE);
-  drawSubHexel(4,2,YELLOW);
-  drawSubHexel(5,3,BLUE);
-  
-  subhexelgrid(columns, BLACK);
+  drawGrid();
 }
 
 void loop() {
@@ -61,8 +56,8 @@ void loop() {
 
 //Esta funcion debe ser capaz de dibujar uno de los triangulos de la mall, especificando la fila y la columna dado por el convenio definido en https://github.com/blascarr/TFTCourse
 void drawSubHexel(int row, int col, uint16_t color){
-    float w = width/columns;
-    float h = w*sqrt(4/3);
+    float w = width;
+    float h = height/2;
 
     //Absolut Displacement width and height
     int d_w=(col)/6;
@@ -78,7 +73,9 @@ void drawSubHexel(int row, int col, uint16_t color){
     float y2 = 0;
     float x3 = 0;
     float y3 = 0;
-      
+    
+      h = w*sqrt(4/3);
+      h = 2*height;
       //Desplazamiento entre cuadriculas
       plus_w = (col)/6*2*w;
       plus_h = (row)/4*h;
@@ -91,7 +88,7 @@ void drawSubHexel(int row, int col, uint16_t color){
         plus_h = plus_h + h/2;
       }
 
-      //Identificacion del modo de la cuadricula
+      //Identificación del modo de la cuadricula
       if ((col%6 >= 3)^(row%4 >=2)){
           inv = true;
           //Serial.println("Mode 2");
@@ -112,6 +109,8 @@ void drawSubHexel(int row, int col, uint16_t color){
       }else{
           inv_x = false;
       }
+
+      
 
       //Inicializacion de la referencia
       x1 = 0;
@@ -195,43 +194,14 @@ void drawSubHexel(int row, int col, uint16_t color){
       tft.fillTriangle(   x1 + plus_w, y1 + plus_h, x2 + plus_w, y2 + plus_h,   x3 + plus_w, y3 + plus_h, color);
 }
 
-
-void subhexelgrid(int8_t col, uint16_t color){
-
-    //Calculamos cuantos pixeles hay que dibujar de ancho para cada triangulo. 
-    float w = width/col;
-
-    //Conociendo el ancho de columna, establecemos la altura de cada triangulo con la siguiente formula. 
-    float h = w*sqrt(4/3);
-    
-    //Sabiendo la altura total de la pantalla de cada triangulo, podemos calcular el numero de filas que vamos a dibujar dentro del bucle
-    int n_rows = height/h;
-
-    int posx = 0;
-    int posy = 0;
-    Serial.println(col);
-    Serial.println(n_rows);
-
-    for (int i = 0; i < col; i++){
-      for (int j = 0; j < n_rows; j++){
-
-        //Control para pintar cada recuadro en su posicion y no dibujar en exceso
-        if(!(i%2)) subhexel(w*i, h*j, w, h/2, 1, BLACK);
-        if (i%2) subhexel(w*i, h*j, w, h/2, 0, BLACK);
-        if (!(i%2)) subhexel(w*i, h*(j+1/2)+h/2, w, h/2, 0, BLACK);
-        if (i%2) subhexel(w*i, h*(j+1/2)+h/2, w, h/2, 1, BLACK);
-        
-        /*Serial.print("i: ");
-        Serial.print(i);
-        Serial.print(" j: ");
-        Serial.print(j);
-        Serial.print(" Module i: ");
-        Serial.print(i%2);
-        Serial.print(" Module j: ");
-        Serial.println(j%2);*/
-        
-      }
-    }
+  
+void drawGrid(){
+  int posx = 0;
+  int posy=0;
+  subhexel(posx, posy, width, height, 1, BLACK);
+  //subhexel(posx+width/2, posy, width/2, height/2, 0, BLACK);
+  //subhexel(posx, posy+height/2, width/2, height/2, 0, BLACK);
+  //subhexel(posx+width/2, posy+height/2, width/2, height/2, 1, BLACK);
 }
 
 void subhexel(float pos_x, float pos_y, int w , int h, bool sym, uint16_t color){
@@ -258,6 +228,7 @@ void subhexel(float pos_x, float pos_y, int w , int h, bool sym, uint16_t color)
     
     //borderCorrection();
 }
+
 void borderCorrection(){
   tft.drawFastHLine(-2, -1, width,  BLACK);
   tft.drawFastVLine(-2, -1, height,  BLACK);
