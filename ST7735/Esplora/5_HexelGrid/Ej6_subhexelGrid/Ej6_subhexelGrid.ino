@@ -33,7 +33,7 @@ void setup() {
   Serial.begin(9600);
   tft.initR(INITR_BLACKTAB); // Tab Label for ST7735 TFT Screen (INITR_GREENTAB 0x0, INITR_REDTAB 0x1, INITR_BLACKTAB 0x2)
   
-  tft.setRotation(0); 
+  tft.setRotation(1); 
   tft.fillScreen(YELLOW);
 
   width = tft.width();
