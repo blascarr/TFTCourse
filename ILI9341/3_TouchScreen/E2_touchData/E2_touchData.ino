@@ -83,7 +83,7 @@ void loop(void) {
   //Este objeto nos permite conocer 3 datos. Las coordenadas x e y donde se ejerce la presion y la presion aplicada sobre ella.
   //Obtenemos la presion que se encuentra entre los dos limites definidos anteriormente
 
-  //En la libreria SPFD5408 se ha de sustituir el valor de y por el de z
+  //En la libreria ILI9341 se ha de sustituir el valor de y por el de z
   
   //Mostramos por monitor serie los valores de las coordenadas donde se ejerce presion
   if (p.y > MINPRESSURE && p.y < MAXPRESSURE && p.x > MINX_VALUE && p.z > MINY_VALUE ) {
