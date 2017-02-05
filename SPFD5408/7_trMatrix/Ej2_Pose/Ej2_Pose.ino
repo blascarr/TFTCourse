@@ -1,7 +1,7 @@
 #include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
 #include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
 #include <BasicLinearAlgebra.h>
-#include <Robotic2Duino.h>
+#include <Robo2Duino.h>               // Robotic Matrix transformations library
 
 //Arduino UNO Pin Definition 
 #define LCD_CS A3 // Chip Select goes to Analog 3

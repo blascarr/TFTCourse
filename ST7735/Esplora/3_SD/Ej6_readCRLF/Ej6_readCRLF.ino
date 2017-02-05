@@ -24,8 +24,7 @@
 //Declaracion objeto TFT
 Adafruit_ST7735 tft = Adafruit_ST7735(cs, dc, rst);
 
-
-#define SD_CS 10
+#define SD_CS 8
 
 File myFile;
 #define FOLDERSIZE 100

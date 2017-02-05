@@ -1,7 +1,7 @@
 #include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
 #include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
 #include <BasicLinearAlgebra.h>
-#include <Robo2Duino.h>
+#include <Robo2Duino.h>               // Robotic Matrix transformations library
 
 //Arduino UNO Pin Definition 
 #define LCD_CS A3 // Chip Select goes to Analog 3
@@ -36,7 +36,7 @@ void setup() {
   tft.fillScreen(WHITE);
 
   tft.setTextSize(2);
-  tft.setTextColor(BLACK);
+  tft.setTextColor(GREEN);
   
   width = tft.width();
   height = tft.height();
@@ -47,13 +47,15 @@ void setup() {
 void loop() {
 
   //Calculamos aleatoriamente los parametros de entrada para la funcion estrella
-  long dx = random (40, width/2);
+  //Cambiar limite minimo y maximo para restringir las formas
+  long dx = random (80, width/2);
 
-  //Si cambiamos el angulo a mayores de 180 salen angulos muy  abiertos
-  long dg = random (20, 180);
+  //Si cambiamos el angulo menores de 40 o mayores de 180 salen angulos muy  abiertos
+  long dg = random (40, 180);
+  //Numero de iteraciones de cada linea
   long nn = random (10, 150);
   
-  //Iniciamos la referencia en una pocicion fija en cada bucle
+  //Iniciamos la referencia en una pocicion fija en cada iteracion para centrarlo. 
   P.m = se2(width/2 - dx/2, height/2,0);
  //trplot(P.m,40,GREEN, '0',0);
  
@@ -75,9 +77,10 @@ void star(int l, int angle, int n){
     
     float xf = P.m(0,2);
     float yf = P.m(1,2);
-    tft.drawLine(x0, y0, xf , yf , BLUE);
-    
-    //trplot(P.m,40,GREEN, ' ',0);
+    tft.drawLine(x0, y0, xf , yf , GREEN);
+
+    //Descomentar para visualizar cada referencia repectiva en cada punto
+    //trplot(P.m,40,YELLOW, ' ',0);
     Serial.print("Pose: ");
     Serial << P.m;
     Serial.println();

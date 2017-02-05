@@ -1,7 +1,7 @@
 #include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
 #include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
 #include <BasicLinearAlgebra.h>
-#include <Robo2Duino.h>
+#include <Robo2Duino.h>               // Robotic Matrix transformations library
 
 //Arduino UNO Pin Definition 
 #define LCD_CS A3 // Chip Select goes to Analog 3
@@ -44,7 +44,7 @@ void setup() {
   P.move(se2(width/4, height/2,0));
   trplot(P.m,40,GREEN, '0',0);
 
-  int l = 45;
+  int l = 100;
   float angle = 144;
   
   for (int i = 0; i<15; i++){
@@ -61,7 +61,6 @@ void setup() {
     tft.drawLine(x0, y0, xf , yf , BLACK);
   }
 }
-
 
 void loop() {
 

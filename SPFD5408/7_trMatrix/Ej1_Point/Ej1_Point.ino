@@ -1,7 +1,7 @@
 #include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
 #include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
 #include <BasicLinearAlgebra.h>
-#include <Robo2Duino.h>
+#include <Robo2Duino.h>               // Robotic Matrix transformations library
 
 //Arduino UNO Pin Definition 
 #define LCD_CS A3 // Chip Select goes to Analog 3
@@ -42,13 +42,13 @@ void setup() {
   Serial << T;
   Serial.println();
   
-  Point2D p(30,0); 
+  Point2D p(-50,0); 
   p.move(T); 
   
   tft.drawLine(T(0,2), T(1,2), p.x , p.y , BLUE);
   serialPoint(p);
 
-  float side = 40;
+  float side = 200;
 
   //Inversion de los ejes de dibujo. Por defecto adelante es el eje positivo de x e izquierda es el eje positivo de y
   //p.setInv(0,1);
@@ -56,7 +56,7 @@ void setup() {
   //Definicion de punto inicial y final de la recta
   Point2D p0 = p;
   Point2D pf ;
-  p.move(20,20);
+  p.move(-50,100);
   pf = p; 
   serialPoint(pf);
   tft.drawLine(p0.x, p0.y, pf.x , pf.y , BLACK);
