@@ -1,6 +1,7 @@
 #include <SPFD5408_Adafruit_GFX.h>    // Core graphics library
 #include <SPFD5408_Adafruit_TFTLCD.h> // Hardware-specific library
 #include <BasicLinearAlgebra.h>
+#include <Robotic2Duino.h>
 
 //Arduino UNO Pin Definition 
 #define LCD_CS A3 // Chip Select goes to Analog 3
@@ -25,9 +26,7 @@ Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 int width, height;
 
 //Rotation Matrix
-/*Matrix <3, 3, float> rot;
-Matrix <3, 3, float> aux;
-Matrix <3, 3, float> newMatrix;*/
+Pose2D P(0,0,0);
 
 void setup() {
   Serial.begin(9600);
@@ -42,15 +41,25 @@ void setup() {
   width = tft.width();
   height = tft.height();
 
+  P.move(se2(width/4, height/2,0));
+  trplot(P.m,40,BLACK, '0',0);
+
+  int l = 45;
+  float angle = 144;
   
-  Matrix<3> v;
-  v.Fill(0);
-  Serial << v;
+  for (int i = 0; i<15; i++){
   
-  Matrix <3, 3, float> rot;
-  //rot = rotMatrix(35);
-  Serial << rot;
-  //rotateLine(45,80,-124);
+    float x0 = P.m(0,2);
+    float y0 = P.m(1,2);
+    P.move(se2(l,0 ,angle));
+    //trplot(P.m,40,GREEN, ' ',0);
+    Serial.print("Pose: ");
+    Serial << P.m;
+    Serial.println();
+    float xf = P.m(0,2);
+    float yf = P.m(1,2);
+    tft.drawLine(x0, y0, xf , yf , BLACK);
+  }
 }
 
 
@@ -58,31 +67,24 @@ void loop() {
 
 }
 
-/*Matrix <3, 3, float> rotate(Matrix <3, float> m, angle){
-  
-  float angle_i = 72;
-  float ang2rad=360/PI;
-  
-  float arrayRot[3][3] = {{cos(angle_i/ang2rad),sin(angle_i/ang2rad),0},{-sin(angle_i/ang2rad),cos(angle_i/ang2rad)},{0,0,1}};
-  Matrix <3, 3, float> rot (arrayRot);
+void trplot(Matrix<3, 3, float> T, int size, uint16_t color,char label, int dir ){
 
+  int inv_x = 1;
+  int inv_y = 1;
+  if ((dir == 1 ) || (dir == 2)){
+    inv_y = -1;
+  }
+
+  if ((dir == 2 ) || (dir == 3)){
+    inv_x = -1;
+  }
+      
+  tft.drawLine(T(0,2), T(1,2), (T(0,2) + (inv_x)*T(0,0)*size) , (T(1,2) + (inv_y)*T(1,0)*size), color);
+  tft.drawLine(T(0,2), T(1,2), (T(0,2) + (inv_x)*T(0,1)*size) , (T(1,2) + (inv_y)*T(1,1)*size) , color);
+  tft.drawChar((T(0,2) + (inv_x)*T(0,0)*size- 5), T(1,2) + (inv_y)*T(1,0)*size -15,'x',color,WHITE, 1);
+  tft.drawChar((T(0,2) + (inv_x)*T(0,1)*size-15), T(1,2) + (inv_y)*T(1,1)*size -5,'y',color,WHITE, 1);
+  tft.drawChar(T(0,2)-5, T(1,2) + -5,label,color,WHITE, 1);
 }
-*/
-
-
-
-/*float* rotMatrix(int angle){
-  
-  float ang2rad=360/PI;
-  float arrayRot[3][3] = {{cos(angle/ang2rad),sin(angle/ang2rad),0},{-sin(angle/ang2rad),cos(angle/ang2rad)},{0,0,1}};
-  Matrix <3, 3, float> m (arrayRot);
-
-}
-/*
-Matrix <3, 3, float> trans(Matrix <3, float> m, distance){
-  Matrix <3, 3, float> distance;
-  
-}*/
 
 //repeticiones, lado linea, angulo 
 void rotateLine(){

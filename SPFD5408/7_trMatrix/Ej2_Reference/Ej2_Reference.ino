@@ -27,7 +27,7 @@ int width, height;
 
 void setup() {
   Serial.begin(9600);
-  
+  Matrix<3,3,float> A;
   tft.begin(0x9341); // SDFP5408
 
   tft.setRotation(0); 
@@ -36,31 +36,18 @@ void setup() {
   width = tft.width();
   height = tft.height();
   
-  float x = width/2;
-  float y = height/2;
-  float angle =30;
+  int x = width/2;
+  int y = height/2;
+
+  A = trans2tr (x,y);
   
-  Pose2D P0 (-2,1,-30);
-  Serial.print ("This: ");
-  P0.print();
-
+  int l = 50;
   
-  Pose2D G0 (1,2,30);
-  
-  Matrix<3, 3, float> P1 =se2(5,6,15);
-  Matrix<3, 3, float> P2 =se2(-2,1,-30);
-
-  P0.move(P1);
-  P0.print();
-
-  P0.move(P2);
-  P0.print();
-
-  G0.move(P2*P1);
-  G0.print();
+  //Movimiento hacia el centro de la pantalla
+  tft.drawLine(x, y, l+x , y , BLACK);
+  tft.drawLine(x, y, x , l+y , BLACK);
 }
 
 void loop() {
   
 }
-
