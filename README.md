@@ -13,7 +13,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <br>
 
 
-  	Blascarr invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
+<b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
     
     
     
