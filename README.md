@@ -12,6 +12,18 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 </ul>
 <br>
 
+<h1>ICSP Connection TFT</h1>
+
+<p align="center">
+  <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
+  
+</p>
+
+<h1>ICSP Connection TFT Pin Arduino</h1>
+<p align="center">
+  <img  src="/src/PinOut/TFTICSPPin_bb.png" width="600"/>
+  
+</p>
 
 <b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
     
