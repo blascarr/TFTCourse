@@ -12,7 +12,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 </ul>
 <br>
 
-<h1>ICSP Connection TFT</h1>
+<h1>ICSP Connection TFT Pin Arduino</h1>
 
 <p align="center">
   <img  src="/src/PinOut/Arduino_UNO_ICSP.jpg" width="600"/>
@@ -24,7 +24,6 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
   
 </p>
 
-<h1>ICSP Connection TFT Pin Arduino</h1>
 <p align="center">
   <img  src="/src/PinOut/TFTICSPPin_bb.png" width="600"/>
   
