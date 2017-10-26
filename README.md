@@ -46,7 +46,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <h1>ICSP Connection TFT Pin Arduino UNO</h1>
 
 <p align="center">
-  <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="600"/>
+  <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="200"/>
   
 </p>
 
@@ -64,10 +64,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <li> CS (Chip Select) --> 8</li>
 <li> SD-CS (SD Pin) --> 7</li>
 </ul>
-<p align="center">
-  <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
-  
-</p>
+
 <b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
     
     
