@@ -15,6 +15,11 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <h1>ICSP Connection TFT</h1>
 
 <p align="center">
+  <img  src="/src/PinOut/Arduino_UNO_ICSP.jpg" width="600"/>
+  
+</p>
+
+<p align="center">
   <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
   
 </p>
