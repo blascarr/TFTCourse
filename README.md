@@ -30,8 +30,8 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 
 <ul>
 <li> DC/RS (Data Command) --> 6</li>
-<li> CS (Chip Select) --> 8</li>
-<li> SD-CS (SD Pin) --> 7</li>
+<li> CS (Chip Select) --> 7</li>
+<li> SD-CS (SD Pin) --> 8</li>
 </ul>
 <p align="center">
   <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
@@ -61,8 +61,8 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 
 <ul>
 <li> DC/RS (Data Command) --> 6</li>
-<li> CS (Chip Select) --> 8</li>
-<li> SD-CS (SD Pin) --> 7</li>
+<li> CS (Chip Select) --> 7</li>
+<li> SD-CS (SD Pin) --> 8</li>
 </ul>
 
 <b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
