@@ -65,6 +65,17 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <li> SD-CS (SD Pin) --> 8</li>
 </ul>
 
+<h1>ST7735  Arduino UNO</h1>
+<p align="center">
+  <img  src="/src/PinOut/TFT128x160_18_PinOut." width="200"/>
+  
+</p>
+
+<ul>
+<li> A0 --> 8</li>
+<li> CS (Chip Select) --> 10</li>
+<li> SDA --> 11</li>
+</ul>
 <b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
     
     
