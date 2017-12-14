@@ -19,6 +19,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
   
 </p>
 
+
 <ul>
 <li> MISO </li>
 <li> MOSI</li>
@@ -27,21 +28,17 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <li> 5V </li>
 <li> GND </li>
 </ul>
-
 <ul>
 <li> DC/RS (Data Command) --> 6</li>
 <li> CS (Chip Select) --> 7</li>
 <li> SD-CS (SD Pin) --> 8</li>
 </ul>
+
 <p align="center">
-  <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
+  <img  src="/src/PinOut/TFT_Template.png" width="600"/>
   
 </p>
 
-<p align="center">
-  <img  src="/src/PinOut/TFTICSPPin_bb.png" width="600"/>
-  
-</p>
 
 <h1>ICSP Connection TFT Pin Arduino UNO</h1>
 
@@ -49,8 +46,9 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
   <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="200"/>
   
 </p>
+
 <p align="center">
-  <img  src="/src/PinOut/TFT_Template.png" width="200"/>
+  <img  src="/src/PinOut/TFTICSPPinPro_bb.png" width="600"/>
   
 </p>
 
@@ -69,6 +67,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <li> SD-CS (SD Pin) --> 8</li>
 </ul>
 
+
 <h1>ST7735  Arduino UNO</h1>
 <p align="center">
   <img  src="/src/PinOut/TFT_ST7735_Template.png" width="600"/>
@@ -76,10 +75,22 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 </p>
 
 <ul>
-<li> A0 (DC) --> 8</li>
-<li> CS (Chip Select) --> 10</li>
-<li> SDA --> 11</li>
+<li> A0 (DC) --> 6</li>
+<li> CS (Chip Select) --> 7</li>
+<li> RST --> 5</li>
+<li> SDA --> MOSI</li>
+<li> SD-CS (SD Pin) --> 10</li>
+<li> SD-MOSI (SD Pin) -->11</li>
+<li> SD-MISO (SD Pin) --> 12</li>
+<li> SD-SCK (SD Pin) --> 13</li>
 </ul>
+
+<h2>SPI Arduino Pins</h2>
+<p align="center">
+  <img  src="/src/PinOut/SPI_Arduino_Pins.png" width="600"/>
+  
+</p>
+
 <b>Blascarr</b> invests time and resources providing this open source code like some other libraries, please respect the job and support open-source software.
     
     
