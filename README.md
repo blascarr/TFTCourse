@@ -49,6 +49,10 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
   <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="200"/>
   
 </p>
+<p align="center">
+  <img  src="/src/PinOut/TFT_Template.png" width="200"/>
+  
+</p>
 
 <ul>
 <li> MISO --> 12</li>
@@ -67,12 +71,12 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 
 <h1>ST7735  Arduino UNO</h1>
 <p align="center">
-  <img  src="/src/PinOut/TFT128x160_18_PinOut.jpg" width="600"/>
+  <img  src="/src/PinOut/TFT_ST7735_Template.png" width="600"/>
   
 </p>
 
 <ul>
-<li> A0 --> 8</li>
+<li> A0 (DC) --> 8</li>
 <li> CS (Chip Select) --> 10</li>
 <li> SDA --> 11</li>
 </ul>
