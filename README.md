@@ -49,14 +49,15 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 
 
 <ul>
-<li> MOSI --> 11</li>
-<li> MISO --> 12</li>
-<li> SCK --> 13</li>
+<li> SD-MOSI --> 11</li>
+<li> SD-MISO --> 12</li>
+<li> SD-SCK --> 13</li>
 <li> 5V </li>
 <li> GND </li>
 </ul>
 
 <ul>
+<li> RST --> 5</li>
 <li> DC/RS (Data Command) --> 6</li>
 <li> CS (Chip Select) --> 7</li>
 <li> SD-CS (SD Pin) --> 10</li>
