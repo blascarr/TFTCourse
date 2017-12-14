@@ -15,7 +15,7 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 <h1>ICSP Connection TFT Pin Arduino</h1>
 
 <p align="center">
-  <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="200"/>
+  <img  src="/src/PinOut/Arduino_UNO_ICSP.jpg" width="600"/>
   
 </p>
 
@@ -25,10 +25,10 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 </p>
 
 <ul>
-<li> MISO --> 12</li>
-<li> MOSI --> 11</li>
-<li> SCK --> 13</li>
-<li> RESET --> 10</li>
+<li> MISO </li>
+<li> MOSI</li>
+<li> SCK </li>
+<li> RESET </li>
 <li> 5V </li>
 <li> GND </li>
 </ul>
@@ -42,25 +42,24 @@ En este curso se van a realizar diferentes actividades para el uso de pantallas 
 
 <h1>ICSP Connection TFT Pin Arduino UNO</h1>
 
-
 <p align="center">
-  <img  src="/src/PinOut/Arduino_UNO_ICSP.jpg" width="600"/>
+  <img  src="/src/PinOut/ICSP_UNOPINS.jpg" width="200"/>
   
 </p>
 
 
 <ul>
-<li> MISO </li>
-<li> MOSI</li>
-<li> SCK </li>
-<li> RESET </li>
+<li> MOSI --> 11</li>
+<li> MISO --> 12</li>
+<li> SCK --> 13</li>
 <li> 5V </li>
 <li> GND </li>
 </ul>
+
 <ul>
 <li> DC/RS (Data Command) --> 6</li>
 <li> CS (Chip Select) --> 7</li>
-<li> SD-CS (SD Pin) --> 8</li>
+<li> SD-CS (SD Pin) --> 10</li>
 </ul>
 
 <p align="center">
