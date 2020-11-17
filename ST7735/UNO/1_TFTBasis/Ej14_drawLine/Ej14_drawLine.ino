@@ -62,7 +62,7 @@ void setup() {
   //Lineas de aristas
   tft.drawLine(X1,Y1,X2,Y2,BLACK);
   tft.drawLine(X2,Y2,X3,Y3,BLUE);
-  tft.drawLine(X3,Y3,X4,Y4,ROSE);
+  tft.drawLine(X3,Y3,X4,Y4,RED);
   tft.drawLine(X4,Y4,X1,Y1,YELLOW);
 
   //Lineas diagonales
